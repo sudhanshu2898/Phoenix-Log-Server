@@ -111,7 +111,7 @@ int main(){
                     std::string askForServiceName = "Please provide service name: ";
                     send(clientSocket, askForServiceName.c_str(), askForServiceName.length(), 0);
                     char serviceName[MAX_QUERY_LENGTH] = {0};
-                    recv(clientSocket, serviceName, MAX_QUERY_LENGTH, 0);
+                    int bytesIn = recv(clientSocket, serviceName, MAX_QUERY_LENGTH, 0);
                     currentClients[clientSocket] = serviceName;
                     CreateLogFiles cfs(serviceName);
                     FD_SET(clientSocket, &fileDesciptorReadMaster);
